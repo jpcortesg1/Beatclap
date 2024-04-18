@@ -7,8 +7,21 @@ export default function MainCard() {
         sx={{
           padding: "14px 20px",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: {
+            xs: "column",
+            md: "row-reverse",
+          },
+          justifyContent: "space-between",
+          alignItems: {
+            sx: "auto",
+            md: "center",
+          },
           gap: "14px",
+          paddingTop: {
+            xs: "auto",
+            md: "0",
+          },
+          position: "relative",
         }}
       >
         <Box
@@ -22,6 +35,10 @@ export default function MainCard() {
             sx={{
               fontSize: "24.5px",
               fontWeight: "700",
+              display: {
+                xs: "auto",
+                md: "none",
+              },
             }}
           >
             Users & Teams

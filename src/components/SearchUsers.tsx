@@ -70,14 +70,25 @@ export default function SearchUsers() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#212121",
-        padding: "16px 20px",
+        backgroundColor:{
+          xs:  "#212121",
+          md: "inherit",
+        },
+        padding: {
+          xs: "16px 20px",
+          md: "16px 0"
+        },
         gap: "10px",
         marginTop: "16px",
         borderRadius: "22px",
       }}
     >
-      <Search>
+      <Search sx={{
+        bgcolor: {
+          xs: "auto",
+          md: "#1A1A1A",
+        }
+      }}>
         <SearchIconWrapper>
           <IconButton>
             <img src={searchLogo} alt="" />
@@ -100,7 +111,7 @@ export default function SearchUsers() {
             textAlign: "center",
             borderRadius: "28px",
           }}
-        >
+          >
           All
         </InputLabel>
         <Select
@@ -113,11 +124,15 @@ export default function SearchUsers() {
             borderRadius: "28px",
             color: "#FFF",
             textAlign: "center",
+            bgcolor: {
+              xs: "auto",
+              md: "#1A1A1A",
+            }
           }}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>All</MenuItem>
+          <MenuItem value={20}>Active</MenuItem>
+          <MenuItem value={30}>Suspended</MenuItem>
         </Select>
       </FormControl>
     </Box>

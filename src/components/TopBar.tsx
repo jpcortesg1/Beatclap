@@ -9,13 +9,60 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Divider, InputBase } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 import hamburgerLogo from "./../assets/hamburger.svg";
 import searchPlusLogo from "./../assets/search-plus.svg";
 import substractLogo from "./../assets/subtract.svg";
-import { Divider } from "@mui/material";
+import beatClapLogo from "./../assets/Logo-Beatclap.svg";
+import searchLogo from "./../assets/search.svg";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  flex: 2,
+  borderRadius: "12px",
+  backgroundColor: "#1A1A1A",
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(1),
+    width: "auto",
+  },
+  height: "45px",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "left",
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  width: "100%",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
+}));
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -30,16 +77,41 @@ function ResponsiveAppBar() {
   return (
     <>
       <AppBar
-        position="static"
+        position="fixed"
         sx={{
-          backgroundColor: "#080808",
-          width: "100%",
+          backgroundColor: {
+            xs: "#080808",
+            md: "#121212",
+          },
+          width: {
+            sx: "100%",
+            md: "calc(100% - 72px - 16px - 8px)",
+          },
+          marginLeft: {
+            sx: 0,
+            md: "calc(72px + 16px)",
+          },
+          borderRadius: {
+            sx: "0",
+            md: "22px",
+          },
+          marginTop: {
+            sx: "0",
+            md: "8px",
+          },
+          marginRight: {
+            sx: "0",
+            md: "8px",
+          },
         }}
       >
         <Container
           maxWidth="xl"
           sx={{
-            padding: "11px 20px",
+            padding: {
+              sx: "11px 20px",
+              md: "0 20px",
+            },
           }}
         >
           <Toolbar
@@ -49,7 +121,14 @@ function ResponsiveAppBar() {
               justifyContent: "space-between",
             }}
           >
-            <Box>
+            <Box
+              sx={{
+                display: {
+                  xs: "block",
+                  md: "none",
+                },
+              }}
+            >
               <IconButton
                 sx={{
                   padding: "8px 12px",
@@ -66,16 +145,52 @@ function ResponsiveAppBar() {
               </IconButton>
             </Box>
 
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                },
+              }}
+            >
+              <IconButton>
+                <img src={beatClapLogo} alt="" />
+              </IconButton>
+            </Box>
+
             <Box sx={{ flexGrow: 0 }}>
               <IconButton
                 sx={{
                   backgroundColor: "#212121",
                   marginRight: "24px",
                   padding: "16px",
+                  display: {
+                    xs: "auto",
+                    md: "none",
+                  },
                 }}
               >
                 <img src={searchPlusLogo} alt="" />
               </IconButton>
+
+              <Search
+                sx={{
+                  marginRight: "24px",
+                  display: {
+                    xs: "none",
+                    md: "inline-flex",
+                  },
+                  minWidth: "300px",
+                }}
+              >
+                <SearchIconWrapper>
+                  <IconButton>
+                    <img src={searchLogo} alt="" />
+                  </IconButton>
+                </SearchIconWrapper>
+                <StyledInputBase />
+              </Search>
+
               <Tooltip title="Open settings">
                 <IconButton
                   onClick={handleOpenUserMenu}
@@ -119,6 +234,10 @@ function ResponsiveAppBar() {
         sx={{
           backgroundColor: "#1A1A1A",
           height: "1px",
+          display: {
+            xs: "auto",
+            md: "none",
+          },
         }}
       />
     </>

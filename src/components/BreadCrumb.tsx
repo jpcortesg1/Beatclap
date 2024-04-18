@@ -13,13 +13,20 @@ export default function BasicBreadcrumbs() {
           display: "flex",
           justifyContent: "space-between",
           padding: "16px 20px",
-          backgroundColor: "#0A0A0A",
+          paddingBottom: {
+            xs: "auto",
+            md: "0",
+          },
         }}
       >
         <Breadcrumbs
           aria-label="breadcrumb"
           sx={{
             color: "#FFF",
+            display: {
+              xs: "auto",
+              md: "none",
+            },
           }}
           separator={<img src={separatorLogo} alt="" />}
         >
@@ -43,7 +50,28 @@ export default function BasicBreadcrumbs() {
           </Link>
         </Breadcrumbs>
 
-        <Box>
+        <Typography
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            color: "#FFF",
+            fontSize: "35px",
+            fontWeight: "700",
+          }}
+        >
+          Invite Members
+        </Typography>
+
+        <Box
+          sx={{
+            display: {
+              xs: "auto",
+              md: "none",
+            },
+          }}
+        >
           <IconButton
             sx={{
               transform: "rotate(90deg)",
@@ -57,6 +85,10 @@ export default function BasicBreadcrumbs() {
         sx={{
           backgroundColor: "#1A1A1A",
           height: "1px",
+          display: {
+            xs: "auto",
+            md: "none",
+          },
         }}
       />
     </>
